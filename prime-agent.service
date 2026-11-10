@@ -1,0 +1,15 @@
+[Unit]
+Description=Prime Hosting VPS Agent
+After=docker.service
+Requires=docker.service
+
+[Service]
+WorkingDirectory=/opt/prime-agent
+EnvironmentFile=/etc/prime-agent.env
+ExecStart=/usr/bin/python3 -m uvicorn app:app --host 127.0.0.1 --port 8081
+Restart=always
+RestartSec=5
+User=root
+
+[Install]
+WantedBy=multi-user.target
